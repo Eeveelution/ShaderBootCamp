@@ -25,6 +25,12 @@
 /processorParam:DebugMode=Auto
 /build:Shaders/uniforms.fx
 
+#begin Shaders/texCoord.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/texCoord.fx
+
 #begin white.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -21,9 +21,10 @@ namespace ShaderBootCamp {
 
         //Content for Basic Effect
         private Effect _basicEffect;
-
         //Content for Uniform Effect
         private Effect _uniformEffect;
+        //Content for Texture Coordinate Effect
+        private Effect _texCoordEffect;
 
         public Game1() {
             this.Graphics             = new GraphicsDeviceManager(this);
@@ -49,14 +50,17 @@ namespace ShaderBootCamp {
             this._whiteTexture = this.Content.Load<Texture2D>("white");
             this.ArialFont     = this.Content.Load<SpriteFont>("Arial");
 
-            this._basicEffect   = this.Content.Load<Effect>("Shaders/basicEffect");
-            this._uniformEffect = this.Content.Load<Effect>("Shaders/uniforms");
+            this._basicEffect    = this.Content.Load<Effect>("Shaders/basicEffect");
+            this._uniformEffect  = this.Content.Load<Effect>("Shaders/uniforms");
+            this._texCoordEffect = this.Content.Load<Effect>("Shaders/texCoord");
 
-            BasicShader shader            = new(this._whiteTexture, this._basicEffect,   new Vector2(32, 32));
-            UniformsShader uniformsShader = new(this._whiteTexture, this._uniformEffect, new Vector2(32 + 256, 32));
+            BasicShader shader                     = new(this._whiteTexture, this._basicEffect,    new Vector2(32, 32));
+            UniformsShader uniformsShader          = new(this._whiteTexture, this._uniformEffect,  new Vector2(32 + 256, 32));
+            TextureCoordinateShader texCoordShader = new(this._whiteTexture, this._texCoordEffect, new Vector2(32 + (256 * 2), 32));
 
             this._drawableManager.Add(shader);
             this._drawableManager.Add(uniformsShader);
+            this._drawableManager.Add(texCoordShader);
         }
 
         protected override void Update(GameTime gameTime) {

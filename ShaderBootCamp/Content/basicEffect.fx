@@ -8,7 +8,7 @@ struct PS_INPUT
 float4 basicEffect(PS_INPUT Input) : COLOR0 {
     float4 sum = tex2D(samplerState, Input.TexCoord);
 
-    sum.r = 0;
+    sum.r = 128;
     sum.g = 0;
     sum.b = 123;
 

@@ -6,7 +6,8 @@ using ShaderBootCamp.ShadedDrawables;
 
 namespace ShaderBootCamp {
     public class Game1 : Game {
-        public GraphicsDeviceManager Graphics;
+        public  GraphicsDeviceManager Graphics;
+        private Color                 _clearColor = new Color(24, 24, 24);
 
         private SpriteBatch           _spriteBatch;
 
@@ -40,7 +41,7 @@ namespace ShaderBootCamp {
             this._basicEffect  = this.Content.Load<Effect>("basicEffect");
             this._whiteTexture = this.Content.Load<Texture2D>("white");
 
-            BasicShader shader = new(this._whiteTexture, this._basicEffect);
+            BasicShader shader = new(this._whiteTexture, this._basicEffect, new Vector2(32, 32));
 
             this._drawableManager.Add(shader);
         }
@@ -55,7 +56,7 @@ namespace ShaderBootCamp {
         }
 
         protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(this._clearColor);
 
             this._drawableManager.Draw(this._spriteBatch);
 

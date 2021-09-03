@@ -8,15 +8,17 @@ namespace ShaderBootCamp.ShadedDrawables {
         private Texture2D _whiteTexture;
         private Effect    _effect;
 
-        public BasicShader(Texture2D whiteTexture, Effect basicEffect) {
+        public BasicShader(Texture2D whiteTexture, Effect basicEffect, Vector2 position) {
             this._whiteTexture = whiteTexture;
             this._effect       = basicEffect;
+
+            this.Position      = position;
         }
 
         public override void Draw(SpriteBatch batch) {
             batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._effect);
 
-            batch.Draw(this._whiteTexture, new Vector2(0, 0), Color.White);
+            batch.Draw(this._whiteTexture, this.Position, Color.White);
 
             batch.End();
         }

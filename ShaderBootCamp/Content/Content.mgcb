@@ -37,6 +37,12 @@
 /processorParam:DebugMode=Auto
 /build:Shaders/mousePos.fx
 
+#begin Shaders/plotLine.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/plotLine.fx
+
 #begin white.png
 /importer:TextureImporter
 /processor:TextureProcessor

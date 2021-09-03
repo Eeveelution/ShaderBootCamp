@@ -6,19 +6,19 @@ using ShaderBootCamp.Engine;
 namespace ShaderBootCamp.ShadedDrawables {
     public class PlotLine : Drawable {
         private Texture2D _whiteTexture;
-        private Effect    _uniformEffect;
+        private Effect    _plotEffect;
 
-        public PlotLine(Texture2D whiteTexture, Effect uniformEffect, Vector2 position) {
+        public PlotLine(Texture2D whiteTexture, Effect plotEffect, Vector2 position) {
             this._whiteTexture  = whiteTexture;
-            this._uniformEffect = uniformEffect;
+            this._plotEffect = plotEffect;
 
             this.Position = position;
         }
 
         public override void Draw(GameTime time, SpriteBatch batch) {
-            this._uniformEffect.Parameters["windowSize"].SetValue(new Vector2(1280, 720));
+            this._plotEffect.Parameters["windowSize"].SetValue(new Vector2(1, 1));
 
-            batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._uniformEffect);
+            batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._plotEffect);
             batch.Draw(this._whiteTexture, this.Position, Color.White);
             batch.End();
 

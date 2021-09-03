@@ -6,20 +6,20 @@ using ShaderBootCamp.Engine;
 namespace ShaderBootCamp.ShadedDrawables {
     public class MouseShader : Drawable {
         private Texture2D _whiteTexture;
-        private Effect    _uniformEffect;
+        private Effect    _mouseEffect;
 
-        public MouseShader(Texture2D whiteTexture, Effect uniformEffect, Vector2 position) {
+        public MouseShader(Texture2D whiteTexture, Effect mouseEffect, Vector2 position) {
             this._whiteTexture  = whiteTexture;
-            this._uniformEffect = uniformEffect;
+            this._mouseEffect = mouseEffect;
 
             this.Position = position;
         }
 
         public override void Draw(GameTime time, SpriteBatch batch) {
-            this._uniformEffect.Parameters["mousePos"].SetValue(Game1.Instance.MousePosition);
-            this._uniformEffect.Parameters["windowSize"].SetValue(new Vector2(1280, 720));
+            this._mouseEffect.Parameters["mousePos"].SetValue(Game1.Instance.MousePosition);
+            this._mouseEffect.Parameters["windowSize"].SetValue(new Vector2(1280, 720));
 
-            batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._uniformEffect);
+            batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._mouseEffect);
             batch.Draw(this._whiteTexture, this.Position, Color.White);
             batch.End();
 

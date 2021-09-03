@@ -29,6 +29,7 @@ namespace ShaderBootCamp {
         private Effect _mousePosEffect;
         //Content for the Plot Line Effect
         private Effect _plotLineEffect;
+        private Effect _plotLineShapedEffect;
 
         public Vector2 MousePosition {
             get {
@@ -61,23 +62,26 @@ namespace ShaderBootCamp {
             this._whiteTexture = this.Content.Load<Texture2D>("white");
             this.ArialFont     = this.Content.Load<SpriteFont>("Arial");
 
-            this._basicEffect    = this.Content.Load<Effect>("Shaders/basicEffect");
-            this._uniformEffect  = this.Content.Load<Effect>("Shaders/uniforms");
-            this._texCoordEffect = this.Content.Load<Effect>("Shaders/texCoord");
-            this._mousePosEffect = this.Content.Load<Effect>("Shaders/mousePos");
-            this._plotLineEffect = this.Content.Load<Effect>("Shaders/plotLine");
+            this._basicEffect          = this.Content.Load<Effect>("Shaders/basicEffect");
+            this._uniformEffect        = this.Content.Load<Effect>("Shaders/uniforms");
+            this._texCoordEffect       = this.Content.Load<Effect>("Shaders/texCoord");
+            this._mousePosEffect       = this.Content.Load<Effect>("Shaders/mousePos");
+            this._plotLineEffect       = this.Content.Load<Effect>("Shaders/plotLine");
+            this._plotLineShapedEffect = this.Content.Load<Effect>("Shaders/plotLineShaped");
 
-            BasicShader shader                     = new(this._whiteTexture, this._basicEffect,    new Vector2(32, 32));
-            UniformsShader uniformsShader          = new(this._whiteTexture, this._uniformEffect,  new Vector2(32 + 256, 32));
-            TextureCoordinateShader texCoordShader = new(this._whiteTexture, this._texCoordEffect, new Vector2(32 + (256 * 2), 32));
-            MouseShader mouseShader                = new(this._whiteTexture, this._mousePosEffect, new Vector2(32 + (256 * 3), 32));
-            PlotLine plotLineShader                = new(this._whiteTexture, this._plotLineEffect, new Vector2(32, 320));
+            BasicShader shader                     = new(this._whiteTexture, this._basicEffect,          new Vector2(32, 32));
+            UniformsShader uniformsShader          = new(this._whiteTexture, this._uniformEffect,        new Vector2(32 + 256, 32));
+            TextureCoordinateShader texCoordShader = new(this._whiteTexture, this._texCoordEffect,       new Vector2(32 + (256 * 2), 32));
+            MouseShader mouseShader                = new(this._whiteTexture, this._mousePosEffect,       new Vector2(32 + (256 * 3), 32));
+            PlotLine plotLineShader                = new(this._whiteTexture, this._plotLineEffect,       new Vector2(32, 320));
+            PlotLine plotLineShapedShader          = new(this._whiteTexture, this._plotLineShapedEffect, new Vector2(32 + 256, 320));
 
             this._drawableManager.Add(shader);
             this._drawableManager.Add(uniformsShader);
             this._drawableManager.Add(texCoordShader);
             this._drawableManager.Add(mouseShader);
             this._drawableManager.Add(plotLineShader);
+            this._drawableManager.Add(plotLineShapedShader);
         }
 
         protected override void Update(GameTime gameTime) {

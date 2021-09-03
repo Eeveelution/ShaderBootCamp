@@ -43,6 +43,12 @@
 /processorParam:DebugMode=Auto
 /build:Shaders/plotLine.fx
 
+#begin Shaders/plotLineShaped.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Shaders/plotLineShaped.fx
+
 #begin white.png
 /importer:TextureImporter
 /processor:TextureProcessor

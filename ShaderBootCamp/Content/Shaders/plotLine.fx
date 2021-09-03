@@ -10,6 +10,7 @@ float plot(float2 st){
 }
 
 float4 basicEffect(PS_INPUT Input) : COLOR0 {
+    //when converting from glsl to hlsl, remember you will sometimes have to flip the y axis because hlsl just works differently idk
     float2 st = {Input.TexCoord.x, 1.0 - Input.TexCoord.y};
 
     float y = st.x;

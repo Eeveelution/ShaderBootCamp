@@ -1,5 +1,3 @@
-sampler samplerState;
-
 float u_time;
 
 struct PS_INPUT
@@ -13,7 +11,7 @@ float4 basicEffect(PS_INPUT Input) : COLOR0 {
     return sum;
 }
 
-technique BasicEffect {
+technique Uniforms {
     pass P0 {
         PixelShader = compile ps_2_0 basicEffect();
     }

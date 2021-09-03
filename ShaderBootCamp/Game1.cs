@@ -16,7 +16,8 @@ namespace ShaderBootCamp {
         private DrawableManager _drawableManager = new();
 
         //Common Content for Effects
-        private Texture2D _whiteTexture;
+        private Texture2D  _whiteTexture;
+        public  SpriteFont ArialFont;
 
         //Content for Basic Effect
         private Effect _basicEffect;
@@ -39,8 +40,6 @@ namespace ShaderBootCamp {
 
             this.Graphics.ApplyChanges();
 
-
-
             base.Initialize();
         }
 
@@ -48,9 +47,10 @@ namespace ShaderBootCamp {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             this._whiteTexture = this.Content.Load<Texture2D>("white");
+            this.ArialFont     = this.Content.Load<SpriteFont>("Arial");
 
-            this._basicEffect   = this.Content.Load<Effect>("basicEffect");
-            this._uniformEffect = this.Content.Load<Effect>("uniforms");
+            this._basicEffect   = this.Content.Load<Effect>("Shaders/basicEffect");
+            this._uniformEffect = this.Content.Load<Effect>("Shaders/uniforms");
 
             BasicShader shader            = new(this._whiteTexture, this._basicEffect,   new Vector2(32, 32));
             UniformsShader uniformsShader = new(this._whiteTexture, this._uniformEffect, new Vector2(32 + 256, 32));

@@ -13,17 +13,17 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin basicEffect.fx
+#begin Shaders/basicEffect.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:basicEffect.fx
+/build:Shaders/basicEffect.fx
 
-#begin uniforms.fx
+#begin Shaders/uniforms.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:uniforms.fx
+/build:Shaders/uniforms.fx
 
 #begin white.png
 /importer:TextureImporter
@@ -36,3 +36,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:white.png
+
+#begin Arial.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Arial.spritefont

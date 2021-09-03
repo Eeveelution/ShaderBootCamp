@@ -22,6 +22,14 @@ namespace ShaderBootCamp.ShadedDrawables {
             batch.Draw(this._whiteTexture, this.Position, Color.White);
 
             batch.End();
+
+            //Draw Text
+
+            batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+
+            batch.DrawString(Game1.Instance.ArialFont, "Uniforms (Parameters)", this.Position + new Vector2(0, 256), Color.White);
+
+            batch.End();
         }
     }
 }

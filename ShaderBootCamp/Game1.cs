@@ -6,6 +6,8 @@ using ShaderBootCamp.ShadedDrawables;
 
 namespace ShaderBootCamp {
     public class Game1 : Game {
+        public static Game1 Instance;
+
         public  GraphicsDeviceManager Graphics;
         private Color                 _clearColor = new Color(24, 24, 24);
 
@@ -21,6 +23,8 @@ namespace ShaderBootCamp {
             this.Graphics             = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible        = true;
+
+            Instance = this;
         }
 
         protected override void Initialize() {
@@ -51,6 +55,7 @@ namespace ShaderBootCamp {
                 Exit();
 
             // TODO: Add your update logic here
+            this._drawableManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -58,7 +63,7 @@ namespace ShaderBootCamp {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(this._clearColor);
 
-            this._drawableManager.Draw(this._spriteBatch);
+            this._drawableManager.Draw(gameTime, this._spriteBatch);
 
             base.Draw(gameTime);
         }

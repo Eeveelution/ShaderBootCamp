@@ -16,7 +16,7 @@ namespace ShaderBootCamp.ShadedDrawables {
         }
 
         public override void Draw(GameTime time, SpriteBatch batch) {
-            this._plotEffect.Parameters["windowSize"].SetValue(new Vector2(1, 1));
+            //this._plotEffect.Parameters["windowSize"].SetValue(new Vector2(1, 1));
 
             batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._plotEffect);
             batch.Draw(this._whiteTexture, this.Position, Color.White);

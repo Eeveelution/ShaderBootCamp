@@ -1,24 +1,35 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ShaderBootCamp.Engine;
+using ShaderBootCamp.ShadedDrawables;
 
 namespace ShaderBootCamp {
     public class Game1 : Game {
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager Graphics;
+
         private SpriteBatch           _spriteBatch;
 
+        private DrawableManager _drawableManager = new();
+
+        //Content for Basic Effect
+        private Effect    _basicEffect;
+        private Texture2D _whiteTexture;
+
         public Game1() {
-            _graphics             = new GraphicsDeviceManager(this);
+            this.Graphics             = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible        = true;
         }
 
         protected override void Initialize() {
             // TODO: Add your initialization logic here
-            this._graphics.PreferredBackBufferWidth  = 1280;
-            this._graphics.PreferredBackBufferHeight = 720;
+            this.Graphics.PreferredBackBufferWidth  = 1280;
+            this.Graphics.PreferredBackBufferHeight = 720;
 
-            this._graphics.ApplyChanges();
+            this.Graphics.ApplyChanges();
+
+
 
             base.Initialize();
         }
@@ -26,7 +37,12 @@ namespace ShaderBootCamp {
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            this._basicEffect  = this.Content.Load<Effect>("basicEffect");
+            this._whiteTexture = this.Content.Load<Texture2D>("white");
+
+            BasicShader shader = new(this._whiteTexture, this._basicEffect);
+
+            this._drawableManager.Add(shader);
         }
 
         protected override void Update(GameTime gameTime) {
@@ -41,8 +57,10 @@ namespace ShaderBootCamp {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            this._spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect:this._basicEffect);
+            this._spriteBatch.Draw(this._whiteTexture, new Vector2(128,128), Color.White);
 
+            this._spriteBatch.End();
             base.Draw(gameTime);
         }
     }

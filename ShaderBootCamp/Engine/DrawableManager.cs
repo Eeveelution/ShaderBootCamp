@@ -10,7 +10,7 @@ namespace ShaderBootCamp.Engine {
         
         private List<ManagedDrawable> _drawableList = new();
 
-        public void Draw(SpriteBatch batch) {
+        public void Draw(SpriteBatch batch, GraphicsDevice graphicsDevice) {
             List<DrawnShadedDrawable> drawnShadedDrawables = new();
 
             for (int i = 0; i != this._drawableList.Count; i++) {
@@ -23,7 +23,7 @@ namespace ShaderBootCamp.Engine {
                     case ShadedDrawable shadedDrawable:
                         DrawnShadedDrawable drawnShadedDrawable = new() {
                             Drawable = shadedDrawable,
-                            RenderTargets = shadedDrawable.Draw()
+                            RenderTargets = shadedDrawable.Draw(batch, graphicsDevice)
                         };
 
                         drawnShadedDrawables.Add(drawnShadedDrawable);
@@ -32,7 +32,6 @@ namespace ShaderBootCamp.Engine {
             }
 
             batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
-
 
             for (int j = 0; j < drawnShadedDrawables.Count; j++) {
                 DrawnShadedDrawable currentDrawable = drawnShadedDrawables[j];
@@ -46,5 +45,7 @@ namespace ShaderBootCamp.Engine {
 
             batch.End();
         }
+
+        public void Add(ManagedDrawable drawable) => this._drawableList.Add(drawable);
     }
 }

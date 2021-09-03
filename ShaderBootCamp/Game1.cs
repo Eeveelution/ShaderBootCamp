@@ -57,10 +57,8 @@ namespace ShaderBootCamp {
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            this._spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect:this._basicEffect);
-            this._spriteBatch.Draw(this._whiteTexture, new Vector2(128,128), Color.White);
+            this._drawableManager.Draw(this._spriteBatch);
 
-            this._spriteBatch.End();
             base.Draw(gameTime);
         }
     }

@@ -25,6 +25,15 @@ namespace ShaderBootCamp {
         private Effect _uniformEffect;
         //Content for Texture Coordinate Effect
         private Effect _texCoordEffect;
+        //Content for Mouse Position Effect
+        private Effect _mousePosEffect;
+
+        public Vector2 MousePosition {
+            get {
+                (int x, int y) = Mouse.GetState(this.Window).Position;
+                return new Vector2(x, y);
+            }
+        }
 
         public Game1() {
             this.Graphics             = new GraphicsDeviceManager(this);
@@ -53,14 +62,17 @@ namespace ShaderBootCamp {
             this._basicEffect    = this.Content.Load<Effect>("Shaders/basicEffect");
             this._uniformEffect  = this.Content.Load<Effect>("Shaders/uniforms");
             this._texCoordEffect = this.Content.Load<Effect>("Shaders/texCoord");
+            this._mousePosEffect = this.Content.Load<Effect>("Shaders/mousePos");
 
             BasicShader shader                     = new(this._whiteTexture, this._basicEffect,    new Vector2(32, 32));
             UniformsShader uniformsShader          = new(this._whiteTexture, this._uniformEffect,  new Vector2(32 + 256, 32));
             TextureCoordinateShader texCoordShader = new(this._whiteTexture, this._texCoordEffect, new Vector2(32 + (256 * 2), 32));
+            MouseShader mouseShader                = new(this._whiteTexture, this._mousePosEffect, new Vector2(32 + (256 * 3), 32));
 
             this._drawableManager.Add(shader);
             this._drawableManager.Add(uniformsShader);
             this._drawableManager.Add(texCoordShader);
+            this._drawableManager.Add(mouseShader);
         }
 
         protected override void Update(GameTime gameTime) {

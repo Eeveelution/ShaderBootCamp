@@ -15,7 +15,7 @@ namespace ShaderBootCamp.ShadedDrawables {
             this.Position      = position;
         }
 
-        public override void Draw(SpriteBatch batch) {
+        public override void Draw(GameTime time, SpriteBatch batch) {
             batch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, effect: this._effect);
 
             batch.Draw(this._whiteTexture, this.Position, Color.White);

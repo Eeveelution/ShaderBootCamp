@@ -15,9 +15,14 @@ namespace ShaderBootCamp {
 
         private DrawableManager _drawableManager = new();
 
-        //Content for Basic Effect
-        private Effect    _basicEffect;
+        //Common Content for Effects
         private Texture2D _whiteTexture;
+
+        //Content for Basic Effect
+        private Effect _basicEffect;
+
+        //Content for Uniform Effect
+        private Effect _uniformEffect;
 
         public Game1() {
             this.Graphics             = new GraphicsDeviceManager(this);
@@ -42,12 +47,16 @@ namespace ShaderBootCamp {
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            this._basicEffect  = this.Content.Load<Effect>("basicEffect");
             this._whiteTexture = this.Content.Load<Texture2D>("white");
 
-            BasicShader shader = new(this._whiteTexture, this._basicEffect, new Vector2(32, 32));
+            this._basicEffect   = this.Content.Load<Effect>("basicEffect");
+            this._uniformEffect = this.Content.Load<Effect>("uniforms");
+
+            BasicShader shader            = new(this._whiteTexture, this._basicEffect,   new Vector2(32, 32));
+            UniformsShader uniformsShader = new(this._whiteTexture, this._uniformEffect, new Vector2(32 + 256, 32));
 
             this._drawableManager.Add(shader);
+            this._drawableManager.Add(uniformsShader);
         }
 
         protected override void Update(GameTime gameTime) {
